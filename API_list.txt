@@ -1,0 +1,34 @@
+
+Can you pause using api from otcommerece and use api from aliexpresss for now 
+1. https://openservice.aliexpress.com/doc/api.htm#/api?cid=3&path=/auth/token/security/create&methodType=GET/POST 
+
+TaoBao API Reference :
+2. https://open.taobao.global/doc/api.htm#/api?cid=8&path=/auth/token/refresh&methodType=GET/POST 
+
+3. https://open.1688.com/api/overview.htm?id=category_new
+
+4. https://open.pinduoduo.com/
+
+5. https://open.sheincorp.com/
+   https://open.sheincorp.com/documents/apidoc/detail/3000771
+   https://open.sheincorp.com/documents/apidoc/1000001
+
+
+ 
+I could not find api reference for jd.com please try to see if you find it :
+but I found this website to have alot of the API's we need but we can use this for jd.com if we do not find the API reference for jd.com we can utilize from this website 
+
+6. https://tmapi.top/ 
+
+7. https://open.jd.com/v2/#/index
+
+8. https://developer-docs.amazon.com/sp-api
+
+9. https://developer.ebay.com/develop 
+
+
+
+10. https://www.imagetranslate.com/blog/ai-tools-for-e-commerce-image-translation/
+
+Please try to include this api aswell :
+11. https://aidge.com/ 

@@ -1,0 +1,92 @@
+Haan, aap **Cloudinary API** aur **Sirv API** ko PHP me implement kar sakte hain taaki 10 product images ko **360-degree spin video** me convert kiya ja sake. Niche dono ke **PHP implementation examples** diye gaye hain:  
+
+---
+
+## **🚀 Method 1: Cloudinary API (PHP)**
+🔹 **Step 1: Install Cloudinary PHP SDK**
+```bash
+composer require cloudinary/cloudinary_php
+```
+
+🔹 **Step 2: Upload Images & Create Spin Video**
+```php
+<?php
+require 'vendor/autoload.php';
+
+use Cloudinary\Configuration\Configuration;
+use Cloudinary\Api\Upload\UploadApi;
+
+Configuration::instance([
+    'cloud' => [
+        'cloud_name' => 'your_cloud_name',
+        'api_key' => 'your_api_key',
+        'api_secret' => 'your_api_secret'
+    ],
+    'url' => [
+        'secure' => true
+    ]
+]);
+
+$upload = new UploadApi();
+
+// 10 images ko ek 360-degree video me convert karna
+$response = $upload->upload("your_images.zip", [
+    "resource_type" => "video",
+    "transformation" => [
+        ["effect" => "loop:3"],  // Loop video 3 times
+        ["effect" => "reverse"]  // Reverse effect for smooth spin
+    ]
+]);
+
+echo "360 Spin Video URL: " . $response['secure_url'];
+?>
+```
+✅ **Result:** Yeh code **10 images ko ek ZIP me compress karke upload karega** aur **360 spin video generate karega**.  
+✅ **Use Case:** Agar aapka website Odoo, WooCommerce, ya kisi bhi PHP framework me hai, to yeh **automatically video generate kar ke return karega**.
+
+---
+
+## **🚀 Method 2: Sirv API (PHP)**
+🔹 **Step 1: Authenticate API & Upload Images**
+```php
+<?php
+$api_key = "your_sirv_api_key";
+$folder_name = "360-spin";
+$image_files = ["image1.jpg", "image2.jpg", "image3.jpg", "image4.jpg"];
+
+foreach ($image_files as $img) {
+    $file = new CURLFile($img);
+    
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, "https://api.sirv.com/v2/files/upload?filename=/$folder_name/$img");
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, ["Authorization: Bearer $api_key"]);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, ["file" => $file]);
+
+    $response = curl_exec($ch);
+    curl_close($ch);
+
+    echo "Uploaded: " . $img . "<br>";
+}
+
+// Generate 360 spin URL
+$spin_url = "https://your_sirv_account.sirv.com/$folder_name/spin.spin";
+echo "360 Spin View: <a href='$spin_url'>$spin_url</a>";
+?>
+```
+✅ **Result:** Yeh code **10 images ko Sirv API ke through upload karega** aur **360 spin view generate karega**.  
+✅ **Use Case:** Agar aap interactive spin view chahte hain jo **directly website pe embed ho sake**, to yeh best hai.
+
+---
+
+## **🔥 Kaunsa Best Hai?**
+| **Method** | **Best For** | **Output** | **Interactive?** | **Free Plan?** |
+|------------|------------|-----------|---------------|------------|
+| **Cloudinary API (PHP)** | WooCommerce, Odoo, Custom Apps | **MP4 Video** | ❌ No | ✅ Yes |
+| **Sirv API (PHP)** | Interactive 360 View, Shopify | **Spin.spin Embed** | ✅ Yes | ✅ Yes |
+
+- **Agar aapko 360-degree spin video chahiye (MP4 format), to Cloudinary best hai.**  
+- **Agar interactive 360-degree spin chahiye (jise user drag kar sake), to Sirv API best hai.**  
+
+Agar aap mujhe **specific project ya integration batao** to mai aur better customize karke solution de sakta hoon! 🚀
